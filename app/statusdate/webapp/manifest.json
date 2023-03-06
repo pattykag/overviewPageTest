@@ -89,7 +89,9 @@
         "routing": {
             "config": {},
             "routes": [],
-            "targets": {}
+            "targets": {
+                "initialLoad": "Enabled"
+            }
         }
     },
     "sap.ovp": {
@@ -97,38 +99,13 @@
         "globalFilterEntityType": "log_status_bankstatement_hc",
         "enableLiveFilter": true,
         "cards": {
-            "card_20": {
+            "mydonutcard": {
                 "model": "mainModel",
-                "template": "sap.ovp.cards.v4.linklist",
+                "template": "sap.ovp.cards.v4.charts.analytical",
                 "settings": {
-                    "title": "Carousel",
+                    "title": "Donut Card - Graphic Tit",
                     "entitySet": "log_status_bankstatement_hc",
-                    "listFlavor": "carousel",
-                    "sortBy": "status",
-                    "sortOrder": "ascending",
-                    "headerAnnotationPath": "com.sap.vocabularies.UI.v1.HeaderInfo#header1",
-                    "defaultSpan": {
-                        "rows": 20,
-                        "cols": 2
-                    }
-                }
-            },
-            "card_2": {
-                "model": "mainModel",
-                "template": "sap.ovp.cards.v4.linklist",
-                "settings": {
-                    "title": "Standard",
-                    "targetUri": "https://en.abc.org/wiki/A_2",
-                    "subtitle": "NEW CARD",
-                    "listFlavor": "standard",
-                    "sortBy": "status",
-                    "entitySet": "log_status_bankstatement_hc",
-                    "sortOrder": "ascending",
-                    "headerAnnotationPath": "com.sap.vocabularies.UI.v1.HeaderInfo#header1",
-                    "defaultSpan": {
-                        "rows": 20,
-                        "cols": 2
-                    }
+                    "subTitle": "Donut Card - Graphic Sub"
                 }
             }
         },
