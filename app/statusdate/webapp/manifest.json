@@ -89,9 +89,7 @@
         "routing": {
             "config": {},
             "routes": [],
-            "targets": {
-                "initialLoad": "Enabled"
-            }
+            "targets": {}
         }
     },
     "sap.ovp": {
