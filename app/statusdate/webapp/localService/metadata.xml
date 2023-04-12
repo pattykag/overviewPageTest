@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="overservice" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="log_status_bankstatement_hc" EntityType="overservice.log_status_bankstatement_hc"/>
+            </EntityContainer>
+            <EntityType Name="log_status_bankstatement_hc">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="companyCode" Type="Edm.String" MaxLength="4"/>
+                <Property Name="houseBank" Type="Edm.String" MaxLength="5"/>
+                <Property Name="accountID" Type="Edm.String" MaxLength="5"/>
+                <Property Name="status" Type="Edm.String"/>
+                <Property Name="date_processed" Type="Edm.Date"/>
+                <Property Name="countryKey" Type="Edm.String" MaxLength="2"/>
+            </EntityType>
+            <Annotations Target="overservice.log_status_bankstatement_hc/companyCode">
+                <Annotation Term="Common.IsUpperCase" Bool="true"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

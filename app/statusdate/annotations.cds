@@ -1,0 +1,1 @@
+using overservice as service from '../../srv/schema-srv';

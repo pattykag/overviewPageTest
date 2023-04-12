@@ -1,0 +1,6 @@
+using {overname as my} from '../db/schema';
+
+service overservice {
+    entity log_status_bankstatement_hc as projection on my.log_status_bankstatement_hc;
+    view StatusAnalytics as select from my.StatusAnalytics
+}

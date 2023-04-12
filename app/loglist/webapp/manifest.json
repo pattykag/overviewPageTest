@@ -1,0 +1,146 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "nsloglist.loglist",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.9.1",
+            "toolsId": "8c7e0d3f-dfb8-4cbc-b54b-0d26b7b30bb5"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/overservice/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.111.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "nsloglist.loglist.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "log_status_bankstatement_hcList",
+                    "target": "log_status_bankstatement_hcList"
+                },
+                {
+                    "pattern": "log_status_bankstatement_hc({key}):?query:",
+                    "name": "log_status_bankstatement_hcObjectPage",
+                    "target": "log_status_bankstatement_hcObjectPage"
+                }
+            ],
+            "targets": {
+                "log_status_bankstatement_hcList": {
+                    "type": "Component",
+                    "id": "log_status_bankstatement_hcList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "log_status_bankstatement_hc",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "log_status_bankstatement_hc": {
+                                    "detail": {
+                                        "route": "log_status_bankstatement_hcObjectPage"
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled"
+                        }
+                    }
+                },
+                "log_status_bankstatement_hcObjectPage": {
+                    "type": "Component",
+                    "id": "log_status_bankstatement_hcObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "log_status_bankstatement_hc"
+                        }
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {}
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "routeoverview"
+    }
+}

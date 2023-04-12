@@ -1,0 +1,147 @@
+_schema-version: "3.1"
+ID: overviewTest
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: overviewTest-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: xsuaa
+  - name: db
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm-ci
+- name: overviewTest-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: overviewTest-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: overviewTest-destination-service
+    parameters:
+      content-target: true
+  - name: overviewTest_html_repo_host
+    parameters:
+      service-key:
+        name: overviewTest_html_repo_host-key
+  - name: xsuaa
+    parameters:
+      service-key:
+        name: xsuaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: routeoverview_overviewTest_html_repo_host
+          ServiceInstanceName: overviewTest-html5-app-host-service
+          ServiceKeyName: overviewTest_html_repo_host-key
+          sap.cloud.service: routeoverview
+        - Authentication: OAuth2UserTokenExchange
+          Name: routeoverview_xsuaa
+          ServiceInstanceName: overviewTest-xsuaa
+          ServiceKeyName: xsuaa-key
+          sap.cloud.service: routeoverview
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: overviewTest-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: overviewTest_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - nsoverviewoverviewmodule.zip
+      name: nsoverviewoverviewmodule
+      target-path: resources/
+    - artifacts:
+      - nsloglistloglist.zip
+      name: nsloglistloglist
+      target-path: resources/
+- name: nsoverviewoverviewmodule
+  type: html5
+  path: app/overviewmodule
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: nsloglistloglist
+  type: html5
+  path: app/loglist
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: xsuaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: overviewTest-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-keys:
+    - name: overviewTest-xsuaa-key
+    service-name: overviewTest-xsuaa
+    service-plan: application
+- name: db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-keys:
+    - name: overviewTest-db-key
+    service-name: overviewTest-db
+    service-plan: hdi-shared
+- name: overviewTest-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: overviewTest-destination-service
+    service-plan: lite
+- name: overviewTest_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: overviewTest-html5-app-host-service
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npx -p @sap/cds-dk cds build --production

@@ -1,0 +1,213 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "nsoverviewoverview.statusdate",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:ovp",
+            "version": "1.9.0",
+            "toolsId": "36316074-8724-4c4d-ad86-182cab828c62"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/overservice/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.111.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {},
+                "sap.ovp": {},
+                "sap.ui.rta": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "nsoverviewoverview.statusdate.i18n.i18n"
+                }
+            },
+            "mainModel": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [],
+            "targets": {}
+        }
+    },
+    "crossNavigation": {
+        "inbounds": {
+            "intent1": {
+                "signature": {
+                    "parameters": {},
+                    "additionalParameters": "allowed"
+                },
+                "semanticObject": "mycross",
+                "action": "display",
+                "title": "Cashapp Scheduler Bank Account Maintenance",
+                "subTitle": "",
+                "icon": ""
+            }
+        }
+    },
+    "sap.ovp": {
+        "globalFilterModel": "mainModel",
+        "globalFilterEntityType": "log_status_bankstatement_hc",
+        "containerLayout": "resizable",
+        "enableLiveFilter": true,
+        "considerAnalyticalParameters": false,
+        "chartSettings": {
+            "showDataLabel": true
+        },
+        "cards": {
+            "card00_Links": {
+                "template": "sap.ovp.cards.linklist",
+                "settings": {
+                    "title": "{{card00_Links}}",
+                    "subTitle": "{{card00_Links_sub}}",
+                    "listFlavor": "standard",
+                    "defaultSpan": {
+                        "rows": 12,
+                        "cols": 1
+                    },
+                    "staticContent": [
+                        {
+                            "title": "Create Purchase Order",
+                            "imageUri": "sap-icon://accelerated",
+                            "imageAltText": "{{card00_Links}}",
+                            "semanticObject": "Action",
+                            "action": "toappperssample",
+                            "disableInCard": true,
+                            "annotationPath": "com.sap.vocabularies.UI.v1.LineItem",
+                            "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#productHeader1"
+                        },
+                        {
+                            "title": "Create Supplier",
+                            "imageUri": "sap-icon://accelerated",
+                            "imageAltText": "{{card00_Links}}",
+                            "semanticObject": "Action",
+                            "action": "toappnavsample"
+                        },
+                        {
+                            "title": "Create Contact",
+                            "imageUri": "sap-icon://accelerated",
+                            "imageAltText": "{{card00_Links}}",
+                            "semanticObject": "Action",
+                            "action": "toappnavsample"
+                        }
+                    ]
+                }
+            },
+            "barchart": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.v4.charts.analytical",
+                "settings": {
+                    "title": "Bar Chart",
+                    "subTitle": "My Bar Chart Desc",
+                    "entitySet": "log_status_bankstatement_hc",
+                    "showDataLabel": true,
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Bar",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#BarHeader",
+                    "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#preventative",
+                    "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#preventative"
+                }
+            },
+            "mydonutcard": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.v4.charts.analytical",
+                "settings": {
+                    "title": "Donut Card - Graphic Tit",
+                    "entitySet": "log_status_bankstatement_hc",
+                    "subTitle": "Donut Card - Graphic Sub",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Donut"
+                }
+            },
+            "list01": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.v4.list",
+                "settings": {
+                    "title": "List Card",
+                    "subTitle": "Standard List card - Standard flavour",
+                    "entitySet": "log_status_bankstatement_hc",
+                    "listType": "condensed",
+                    "listFlavor": "standard",
+                    "sortOrder": "Descending",
+                    "addODataSelect": true,
+                    "stopResizing": false,
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.LineItem#List"
+                }
+            },
+            "lineCard": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.v4.charts.analytical",
+                "settings": {
+                    "title": "Line Chart",
+                    "entitySet": "log_status_bankstatement_hc",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Line"
+                }
+            }
+        },
+        "globalFilterControlType": "MacroFilterBar"
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "analytical"
+    }
+}
