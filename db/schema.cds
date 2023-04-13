@@ -6,7 +6,7 @@ entity log_status_bankstatement_hc: cuid {
     companyCode    : String(4) @Common.IsUpperCase;
     houseBank      : String(5);
     accountID      : String(5);
-    ID_job         : String;
+    job         : String;
     status         : String(15);
     date_processed : Date;
     countryKey     : String(2);

@@ -2,21 +2,23 @@ using {overservice} from './schema-srv';
 
 
 annotate overservice.log_status_bankstatement_hc with {
-    companyCode    @title : '{i18n>companyCode}';
-    houseBank      @title : '{i18n>houseBank}';
-    accountID      @title : '{i18n>accountID}';
-    date_processed @title : '{i18n>date_processed}';
-    status         @title : '{i18n>status}';
-    countryKey     @title : '{i18n>countryKey}'
+    companyCode    @title: '{i18n>companyCode}';
+    houseBank      @title: '{i18n>houseBank}';
+    accountID      @title: '{i18n>accountID}';
+    date_processed @title: '{i18n>date_processed}';
+    status         @title: '{i18n>status}';
+    countryKey     @title: '{i18n>countryKey}';
+    count          @title: '{i18n>count}';
+    job            @title: '{i18n>job}'
 };
 
-annotate overname.log_status_bankstatement_hc with @(UI : {LineItem : [
-    {Value : companyCode},
-    {Value : houseBank},
-    {Value : accountID},
-    {Value : date_processed},
-    {Value : status},
-    {Value : countryKey},
+annotate overname.log_status_bankstatement_hc with @(UI: {LineItem: [
+    {Value: companyCode},
+    {Value: houseBank},
+    {Value: accountID},
+    {Value: date_processed},
+    {Value: status},
+    {Value: countryKey},
 // {
 //     $Type : 'UI.DataFieldWithUrl',
 //     Value : 'Google',
@@ -81,65 +83,65 @@ annotate overname.log_status_bankstatement_hc with @(UI : {LineItem : [
 //manifest -> "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#BarHeader"
 annotate overservice.log_status_bankstatement_hc with @(
     // Line Chart
-    UI : {Chart #Line : {
-        $Type               : 'UI.ChartDefinitionType',
-        ChartType           : #Line,
-        Description         : 'Line Chart',
-        Measures            : ['count'],
-        MeasureAttributes   : [{
-            $Type   : 'UI.ChartMeasureAttributeType',
-            Measure : 'count',
-            Role    : #Axis1
+    UI: {Chart #Line: {
+        $Type              : 'UI.ChartDefinitionType',
+        ChartType          : #Line,
+        Description        : 'Line Chart',
+        Measures           : ['count'],
+        MeasureAttributes  : [{
+            $Type  : 'UI.ChartMeasureAttributeType',
+            Measure: 'count',
+            Role   : #Axis1
         }],
-        Dimensions          : ['ID_job'],
-        DimensionAttributes : [{
-            $Type     : 'UI.ChartDimensionAttributeType',
-            Dimension : 'ID_job',
-            Role      : #Category
+        Dimensions         : ['job'],
+        DimensionAttributes: [{
+            $Type    : 'UI.ChartDimensionAttributeType',
+            Dimension: 'job',
+            Role     : #Category
         }]
     }},
     // Donut Chart
-    UI : {Chart #Donut : {
-        $Type               : 'UI.ChartDefinitionType',
-        ChartType           : #Donut,
-        Description         : 'Donut Chart',
-        Measures            : ['count'],
-        MeasureAttributes   : [{
-            $Type   : 'UI.ChartMeasureAttributeType',
-            Measure : 'count',
-            Role    : #Axis1,
+    UI: {Chart #Donut: {
+        $Type              : 'UI.ChartDefinitionType',
+        ChartType          : #Donut,
+        Description        : 'Donut Chart',
+        Measures           : ['count'],
+        MeasureAttributes  : [{
+            $Type  : 'UI.ChartMeasureAttributeType',
+            Measure: 'count',
+            Role   : #Axis1,
         }],
-        Dimensions          : ['status'],
-        DimensionAttributes : [{
-            $Type     : 'UI.ChartDimensionAttributeType',
-            Dimension : 'status',
-            Role      : #Category
+        Dimensions         : ['status'],
+        DimensionAttributes: [{
+            $Type    : 'UI.ChartDimensionAttributeType',
+            Dimension: 'status',
+            Role     : #Category
         }]
     }},
     // Bar Chart
-    UI : {Chart #Bar : {
-        $Type               : 'UI.ChartDefinitionType',
-        ChartType           : #Bar,
-        Description         : 'Bar Chart',
-        Measures            : ['count'], // must be a number
-        MeasureAttributes   : [{
-            $Type   : 'UI.ChartMeasureAttributeType',
-            Measure : 'count',
-            Role    : #Axis1,
+    UI: {Chart #Bar: {
+        $Type              : 'UI.ChartDefinitionType',
+        ChartType          : #Bar,
+        Description        : 'Bar Chart',
+        Measures           : ['count'], // must be a number
+        MeasureAttributes  : [{
+            $Type  : 'UI.ChartMeasureAttributeType',
+            Measure: 'count',
+            Role   : #Axis1,
         }],
-        Dimensions          : ['status'],
-        DimensionAttributes : [{
-            $Type     : 'UI.ChartDimensionAttributeType',
-            Dimension : 'status',
-            Role      : #Category
+        Dimensions         : ['status'],
+        DimensionAttributes: [{
+            $Type    : 'UI.ChartDimensionAttributeType',
+            Dimension: 'status',
+            Role     : #Category
         }]
     }},
     // "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#BarHeader"
-    UI : {Identification #BarHeader : [{
-        $Type : 'UI.DataFieldWithUrl',
-        Value : 'Google',
-        Label : 'Link to:',
-        Url   : 'http://www.facebook.com'
+    UI: {Identification #BarHeader: [{
+        $Type: 'UI.DataFieldWithUrl',
+        Value: 'Google',
+        Label: 'Link to:',
+        Url  : 'http://www.facebook.com'
     }
     //     {
     //     $Type : 'UI.DataFieldForIntentBasedNavigation',
@@ -154,20 +156,20 @@ annotate overservice.log_status_bankstatement_hc with @(
     // }
     ], },
     // "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#preventative",
-    UI : {PresentationVariant #Bar : {
-        $Type     : 'UI.PresentationVariantType',
-        SortOrder : [{
-            $Type      : 'Common.SortOrderType',
-            Descending : false,
-            Property   : status
+    UI: {PresentationVariant #Bar: {
+        $Type    : 'UI.PresentationVariantType',
+        SortOrder: [{
+            $Type     : 'Common.SortOrderType',
+            Descending: false,
+            Property  : status
         }]
     }},
-    UI : {LineItem #List : [{
-        $Type : 'UI.DataFieldWithUrl',
-        Value : 'Google',
-        Label : 'Link to:',
-        Url   : 'http://www.facebook.com'
-    }], }
+    // UI: {LineItem #List: [{
+    //     $Type: 'UI.DataFieldWithUrl',
+    //     Value: 'Google',
+    //     Label: 'Link to:',
+    //     Url  : 'http://www.facebook.com'
+    // }], }
 // "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#preventative"
 // UI: {DataPoint #Bar: {
 //     Value : starsValue,

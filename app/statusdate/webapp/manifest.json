@@ -120,37 +120,31 @@
             "card00_Links": {
                 "template": "sap.ovp.cards.linklist",
                 "settings": {
-                    "title": "{{card00_Links}}",
-                    "subTitle": "{{card00_Links_sub}}",
+                    "title": "Social Media",
+                    "subTitle": "Contact Us",
                     "listFlavor": "standard",
                     "defaultSpan": {
-                        "rows": 12,
+                        "rows": 15,
                         "cols": 1
                     },
                     "staticContent": [
                         {
-                            "title": "Create Purchase Order",
+                            "title": "Google",       
                             "imageUri": "sap-icon://accelerated",
-                            "imageAltText": "{{card00_Links}}",
-                            "semanticObject": "Action",
-                            "action": "toappperssample",
-                            "disableInCard": true,
-                            "annotationPath": "com.sap.vocabularies.UI.v1.LineItem",
-                            "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#productHeader1"
+                            "targetUri": "https://www.google.com",
+                            "listFlavor": "standard"
                         },
                         {
-                            "title": "Create Supplier",
-                            "imageUri": "sap-icon://accelerated",
-                            "imageAltText": "{{card00_Links}}",
-                            "semanticObject": "Action",
-                            "action": "toappnavsample"
+                            "title": "Twitter",       
+                            "imageUri": "sap-icon://account",
+                            "targetUri": "https://twitter.com/",
+                            "listFlavor": "standard"
                         },
                         {
-                            "title": "Create Contact",
-                            "imageUri": "sap-icon://accelerated",
-                            "imageAltText": "{{card00_Links}}",
-                            "semanticObject": "Action",
-                            "action": "toappnavsample"
+                            "title": "Instagram",       
+                            "imageUri": "sap-icon://address-book",
+                            "targetUri": "https://www.instagram.com/",
+                            "listFlavor": "standard"
                         }
                     ]
                 }
@@ -159,8 +153,8 @@
                 "model": "mainModel",
                 "template": "sap.ovp.cards.v4.charts.analytical",
                 "settings": {
-                    "title": "Bar Chart",
-                    "subTitle": "My Bar Chart Desc",
+                    "title": "Log Status",
+                    "subTitle": "Sum of every status",
                     "entitySet": "log_status_bankstatement_hc",
                     "showDataLabel": true,
                     "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Bar",
@@ -173,32 +167,17 @@
                 "model": "mainModel",
                 "template": "sap.ovp.cards.v4.charts.analytical",
                 "settings": {
-                    "title": "Donut Card - Graphic Tit",
+                    "title": "Status Graphic",
                     "entitySet": "log_status_bankstatement_hc",
-                    "subTitle": "Donut Card - Graphic Sub",
+                    "subTitle": "Donut Mode",
                     "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Donut"
-                }
-            },
-            "list01": {
-                "model": "mainModel",
-                "template": "sap.ovp.cards.v4.list",
-                "settings": {
-                    "title": "List Card",
-                    "subTitle": "Standard List card - Standard flavour",
-                    "entitySet": "log_status_bankstatement_hc",
-                    "listType": "condensed",
-                    "listFlavor": "standard",
-                    "sortOrder": "Descending",
-                    "addODataSelect": true,
-                    "stopResizing": false,
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.LineItem#List"
                 }
             },
             "lineCard": {
                 "model": "mainModel",
                 "template": "sap.ovp.cards.v4.charts.analytical",
                 "settings": {
-                    "title": "Line Chart",
+                    "title": "Jobs",
                     "entitySet": "log_status_bankstatement_hc",
                     "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Line"
                 }

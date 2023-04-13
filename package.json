@@ -25,7 +25,8 @@
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
         "watch-statusdate": "cds watch --open statusdate/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-loglist": "cds watch --open loglist/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-loglist": "cds watch --open loglist/webapp/index.html?sap-ui-xx-viewCache=false",
+        "deploy-p": "npm i && mbt build && cf deploy mta_archives/CAP-overviewTest_1.0.0.mtar --retries 1"
     },
     "engines": {
         "node": "^16.15"
@@ -60,13 +61,17 @@
             "auth": {
                 "kind": "xsuaa"
             },
+            "[production]": {
+                "db": {
+                    "kind": "hana-cloud"
+                }
+            },
             "db": {
-                "kind": "hana-cloud"
+                "kind": "sql"
             }
         }
     },
     "sapux": [
-        "app/overviewmodule",
         "app/statusdate",
         "app/loglist"
     ]
